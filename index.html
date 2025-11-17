@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genos Bot Status</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -13,7 +14,7 @@
         }
         
         body {
-            background-color: #0a0a0a;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             color: #ffffff;
             min-height: 100vh;
             display: flex;
@@ -51,23 +52,29 @@
         }
         
         .profile-pic {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #333;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.05);
         }
         
         .logo {
             font-size: 32px;
             font-weight: 700;
             text-align: center;
-            background: linear-gradient(90deg, #ffffff, #aaaaaa);
+            background: linear-gradient(90deg, #ffffff, #aaaaaa, #ffffff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
         }
         
         main {
@@ -85,6 +92,20 @@
             text-align: center;
             font-weight: 600;
             color: #e0e0e0;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
         }
         
         .status-cards {
@@ -95,17 +116,19 @@
         }
         
         .status-card {
-            background: #111;
+            background: rgba(17, 17, 17, 0.8);
             border-radius: 12px;
             padding: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             border: 1px solid #222;
             transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
         }
         
         .status-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            border-color: #444;
         }
         
         .card-title {
@@ -138,6 +161,13 @@
             height: 12px;
             border-radius: 50%;
             margin-right: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
         
         .online {
@@ -162,18 +192,25 @@
         }
         
         .stat-box {
-            background: #111;
+            background: rgba(17, 17, 17, 0.8);
             border-radius: 12px;
             padding: 25px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             border: 1px solid #222;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-3px);
+            border-color: #444;
         }
         
         .stat-icon {
             font-size: 40px;
             margin-bottom: 15px;
-            color: #555;
+            color: #5865F2;
         }
         
         .stat-value {
@@ -187,13 +224,69 @@
             font-size: 16px;
         }
         
+        .invite-section {
+            background: rgba(17, 17, 17, 0.8);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #222;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .invite-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+        
+        .invite-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .invite-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #5865F2, #4752C4);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(88, 101, 242, 0.3);
+        }
+        
+        .invite-btn.support {
+            background: linear-gradient(135deg, #57F287, #43B581);
+            box-shadow: 0 4px 10px rgba(87, 242, 135, 0.3);
+        }
+        
+        .invite-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .invite-btn i {
+            font-size: 20px;
+        }
+        
         .update-info {
-            background: #111;
+            background: rgba(17, 17, 17, 0.8);
             border-radius: 12px;
             padding: 25px;
             margin-top: 40px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             border: 1px solid #222;
+            backdrop-filter: blur(10px);
         }
         
         .update-title {
@@ -213,6 +306,7 @@
             height: 10px;
             border-radius: 50%;
             margin-right: 10px;
+            animation: pulse 2s infinite;
         }
         
         .updated {
@@ -254,6 +348,28 @@
             font-size: 14px;
         }
         
+        .loading {
+            opacity: 0.7;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
         @media (max-width: 768px) {
             .status-cards, .stats-grid {
                 grid-template-columns: 1fr;
@@ -270,6 +386,17 @@
             .profile-container {
                 flex-direction: column;
                 text-align: center;
+            }
+            
+            .invite-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .invite-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
             }
         }
     </style>
@@ -290,7 +417,7 @@
                 <div class="status-cards">
                     <div class="status-card">
                         <div class="card-title">
-                            <i>🔌</i> Bot Status
+                            <i class="fas fa-plug"></i> Bot Status
                         </div>
                         <div class="card-value" id="bot-status">Loading...</div>
                         <div class="status-indicator">
@@ -301,7 +428,7 @@
                     
                     <div class="status-card">
                         <div class="card-title">
-                            <i>⚡</i> Response Time
+                            <i class="fas fa-bolt"></i> Response Time
                         </div>
                         <div class="card-value" id="response-time">Loading...</div>
                         <div class="status-indicator">
@@ -312,7 +439,7 @@
                     
                     <div class="status-card">
                         <div class="card-title">
-                            <i>🔄</i> Uptime
+                            <i class="fas fa-sync-alt"></i> Uptime
                         </div>
                         <div class="card-value" id="uptime">Loading...</div>
                         <div class="status-indicator">
@@ -324,28 +451,43 @@
                 
                 <div class="stats-grid">
                     <div class="stat-box">
-                        <div class="stat-icon">🖥️</div>
+                        <div class="stat-icon"><i class="fas fa-server"></i></div>
                         <div class="stat-value" id="servers">Loading...</div>
                         <div class="stat-label">Servers</div>
                     </div>
                     
                     <div class="stat-box">
-                        <div class="stat-icon">👥</div>
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
                         <div class="stat-value" id="users">Loading...</div>
                         <div class="stat-label">Users</div>
                     </div>
                     
                     <div class="stat-box">
-                        <div class="stat-icon">📊</div>
+                        <div class="stat-icon"><i class="fas fa-terminal"></i></div>
                         <div class="stat-value" id="commands">Loading...</div>
                         <div class="stat-label">Commands</div>
                     </div>
                     
                     <div class="stat-box">
-                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
                         <div class="stat-value" id="session">Loading...</div>
                         <div class="stat-label">Current Session</div>
                     </div>
+                </div>
+            </section>
+            
+            <!-- Updated Invite Section with correct links -->
+            <section class="invite-section">
+                <h2 class="invite-title">Join Our Community</h2>
+                <div class="invite-buttons">
+                    <a href="https://discord.com/oauth2/authorize?client_id=1282229251726114856&permissions=8&integration_type=0&scope=bot" 
+                       class="invite-btn" target="_blank">
+                        <i class="fas fa-robot"></i> Invite Genos
+                    </a>
+                    <a href="https://discord.gg/wuZMcvDMXw" 
+                       class="invite-btn support" target="_blank">
+                        <i class="fas fa-tools"></i> Support Server
+                    </a>
                 </div>
             </section>
             
@@ -396,8 +538,26 @@
             }, 300);
         });
         
+        // Add loading animation to elements
+        function addLoadingAnimation() {
+            const elements = document.querySelectorAll('.status-card, .stat-box');
+            elements.forEach(el => {
+                el.classList.add('loading');
+            });
+        }
+        
+        // Remove loading animation from elements
+        function removeLoadingAnimation() {
+            const elements = document.querySelectorAll('.status-card, .stat-box');
+            elements.forEach(el => {
+                el.classList.remove('loading');
+            });
+        }
+        
         // Fetch real bot data from the stats.json file
         async function fetchBotData() {
+            addLoadingAnimation();
+            
             try {
                 const response = await fetch('https://xenoscode.github.io/GenosBotStatus/bot_stats.json');
                 if (!response.ok) throw new Error('Stats file not found');
@@ -409,6 +569,8 @@
                 console.error('Error fetching bot data:', error);
                 // Fallback to simulated data if API is unavailable
                 useSimulatedData();
+            } finally {
+                removeLoadingAnimation();
             }
         }
         
@@ -443,7 +605,7 @@
             // Update status
             document.getElementById('update-status-text').textContent = 'System is up to date';
             document.getElementById('update-details').textContent = 
-                `Last updated: ${new Date(data.lastUpdate).toLocaleString()}`;
+                `Last updated: ${new Date(data.lastUpdate || Date.now()).toLocaleString()}`;
         }
         
         // Final fallback: Simulated data (remove when you have real API)
