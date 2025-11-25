@@ -1,4 +1,4 @@
-# Genos Bot Status Dashboard
+# Genos Bot Dashboard
 
 A sleek, real-time status dashboard for the Genos Discord bot. Monitor bot status, server statistics, and deployment updates in one beautiful interface.
 
