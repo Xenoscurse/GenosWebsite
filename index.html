@@ -126,13 +126,14 @@
             margin-bottom: 25px;
             opacity: 0;
             animation: fadeInUp 1s ease-out 0.9s forwards;
+            width: 100%;
         }
 
         .nav-btn {
             background: transparent;
             color: #bbb;
             border: 1px solid #444;
-            padding: 10px 25px;
+            padding: 12px 30px;
             border-radius: 6px;
             font-size: 16px;
             font-weight: 500;
@@ -140,6 +141,8 @@
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            text-align: center;
+            min-width: 150px;
         }
 
         .nav-btn:hover {
@@ -539,13 +542,21 @@
     <div class="container">
         <header>
             <div class="profile-container">
-                <img src="uploaded:Genos3.gif" alt="Genos Profile" class="profile-pic">
+                <img src="https://i.pinimg.com/originals/d2/ce/c5/d2cec518a5bc7f63127bc0c19886f42d.gif" alt="Genos Profile" class="profile-pic">
                 <div class="logo-container">
                     <h1 class="logo">Genos</h1>
                     <p class="subtitle">A Multi-Purpose Discord Application</p>
                 </div>
             </div>
 
+            <!-- Navigation lines for visual separation -->
+            <div class="nav-lines">
+                <div class="nav-line"></div>
+                <div class="nav-line"></div>
+                <div class="nav-line"></div>
+            </div>
+
+            <!-- Navigation buttons - now properly centered -->
             <div class="nav-buttons">
                 <a href="#changelog" class="nav-btn active" data-target="changelog">Changelogs</a>
                 <a href="#learn-more" class="nav-btn" data-target="learn-more">Learn More</a>
@@ -606,7 +617,8 @@
                 </p>
 
                 <div class="changelog" id="changelog-container">
-                    </div>
+                    <!-- Changelog items will be inserted here by JavaScript -->
+                </div>
             </section>
 
             <section class="update-info" id="learn-more" style="display: none;">
@@ -646,15 +658,12 @@
             status: "online", // Options: "online", "offline", "maintenance"
             statusText: "All Systems Operational - Updates Are Live!",
             uptime: "100%",
-            // UPDATED: Uptime date
             uptimeText: "Since Last Restart - November 27, 2025",
-            // UPDATED: Last updated date
             lastUpdated: "November 27, 2025"
         };
 
         // Changelog Configuration - Add your updates here
         const changelogData = [
-            // UPDATED: Date changed from 24th to 27th for the following 9 entries
             {
                 date: "November 27, 2025",
                 message: "🐛 CRITICAL BUG FIX: Fixed syntax error in the anti-link system within the on_message event handler. Added missing parentheses around the URL detection condition that was causing a runtime error."
